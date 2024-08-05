@@ -1,3 +1,9 @@
+#loading required packages
+require(RMySQL)
+require(tidyverse)
+require(googlesheets4)
+require(googledrive)
+
 #loading all db login and passwords credentials
 #games.db  credentials
 user.games='u483816504_retention'
@@ -155,6 +161,7 @@ q <- paste0("INSERT INTO client_data (",db.headers, ") VALUES " , values_string)
 dbSendQuery(con,q)
 dbDisconnect(con)
 
+#now this is done 
 
 
 
