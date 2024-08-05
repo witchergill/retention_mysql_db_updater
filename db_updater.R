@@ -4,6 +4,12 @@ require(tidyverse)
 require(googlesheets4)
 require(googledrive)
 
+googledrive::drive_auth(email = 'ap.kheloyaar@gmail.com',cache  = '.secretsap')
+googlesheets4::gs4_auth(token = googledrive::drive_token())
+
+#checking the files if uploaded into the drive
+
+
 #loading all db login and passwords credentials
 #games.db  credentials
 user.games='u483816504_retention'
