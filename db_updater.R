@@ -5,6 +5,7 @@ require(googlesheets4)
 require(googledrive)
 require(openxlsx2)
 
+load('time_convertor.RData')
 googledrive::drive_auth(email = 'ap.kheloyaar@gmail.com',cache  = '.secretsap')
 googlesheets4::gs4_auth(token = googledrive::drive_token())
 
