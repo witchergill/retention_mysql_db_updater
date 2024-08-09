@@ -19,6 +19,8 @@ create_values <- function(row) {
   
 }
 #loading all db login and passwords credentials
+#mix.db credentials
+use.mix='u483816504_callingmix'
 #games.db  credentials
 user.games='u483816504_retention'
 password.games='3txMtAZ?vJ'
@@ -44,6 +46,9 @@ user.pkr='u483816504_retainpkr'
 password.pkr='aNBugcT*w7*'
 database.name.pkr='u483816504_retainpkr'
 
+client.file.update=F
+client.khlr.file.update=F
+file.file.update=F
 
 updation.date<-Sys.Date()-1
 #checking the files if uploaded into the drive
@@ -186,7 +191,7 @@ while(T){
   
   if(((client.file %in% drive.files) & file.file.update)) {
     #downloading the file
-    drive_download(file.file,path = 'daily_data')
+    drive_download(file.file,overwrite = T)
     
     #creating filtered data for club sheet
     data.biz<- read_csv(file.file,skip = 1)
@@ -373,7 +378,7 @@ while(T){
     
     file.file.update=F
   }
-  
+  cat("\n Waiting \n")
   Sys.sleep(20*60)
   
   }
