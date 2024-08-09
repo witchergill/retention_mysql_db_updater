@@ -20,7 +20,10 @@ create_values <- function(row) {
 }
 #loading all db login and passwords credentials
 #mix.db credentials
-use.mix='u483816504_callingmix'
+user.mix='u483816504_callingmix'
+password.mix='QaEV2?r>#7'
+database.name.mix='u483816504_callingmix'
+
 #games.db  credentials
 user.games='u483816504_retention'
 password.games='3txMtAZ?vJ'
@@ -180,6 +183,23 @@ while(T){
     
     #updating the db with the new updated data
     assign('con',value =dbConnect(MySQL(),user=user.games,password=password.games,dbname=database.name.games,host="srv1126.hstgr.io",port=3306),envir = .GlobalEnv )
+    q <- paste0("INSERT INTO client_data (",db.headers, ") VALUES " , values_string)
+    #fetch(dbSendQuery(con,q))
+    dbSendQuery(con,q)
+    dbDisconnect(con)
+
+
+    #updating mix database
+    
+    #removing the table data from .games 
+    assign('con',value =dbConnect(MySQL(),user=user.mix,password=password.mix,dbname=database.name.mix,host="srv1126.hstgr.io",port=3306),envir = .GlobalEnv )
+    q <- "delete from client_data;"
+    dbSendQuery(conn = con,q)
+    dbDisconnect(con)
+    
+    
+    #updating the db with the new updated data
+    assign('con',value =dbConnect(MySQL(),user=user.mix,password=password.mix,dbname=database.name.mix,host="srv1126.hstgr.io",port=3306),envir = .GlobalEnv )
     q <- paste0("INSERT INTO client_data (",db.headers, ") VALUES " , values_string)
     #fetch(dbSendQuery(con,q))
     dbSendQuery(con,q)
