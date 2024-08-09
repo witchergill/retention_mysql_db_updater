@@ -190,6 +190,12 @@ while(T){
 
 
     #updating mix database
+    data.games$`User ID`<-data.games$`Phone No`
+    # Apply the function to each row of the data frame
+    values <- apply(data.games[,-20], 1, create_values)
+    # Combine all values into a single string
+    values_string <- paste(values, collapse = ", ")
+    values_string<-str_replace_all(values_string,"'NA'","NULL")
     
     #removing the table data from .games 
     assign('con',value =dbConnect(MySQL(),user=user.mix,password=password.mix,dbname=database.name.mix,host="srv1126.hstgr.io",port=3306),envir = .GlobalEnv )
